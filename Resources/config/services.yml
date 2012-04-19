@@ -1,0 +1,7 @@
+parameters:
+#    mqm_product.example.class: MQM\ProductBundle\Example
+
+services:
+#    mqm_product.example:
+#        class: %mqm_product.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
