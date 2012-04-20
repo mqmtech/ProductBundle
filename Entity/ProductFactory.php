@@ -31,4 +31,4 @@ class ProductFactory implements ProductFactoryInterface
     }
 }
 
-?>
+

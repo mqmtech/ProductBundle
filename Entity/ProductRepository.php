@@ -14,7 +14,7 @@ class ProductRepository extends EntityRepository
     public function findAll(PaginationInterface $pagination = null)
     {
         $em = $this->getEntityManager();
-        $sql = "SELECT p from MQMProductBundle:Product p";        
+        $sql = "SELECT p FROM MQMProductBundle:Product p";        
         $q = $em->createQuery($sql);
         if ($pagination) {
             $q = $pagination->paginateQuery($q);
@@ -29,11 +29,11 @@ class ProductRepository extends EntityRepository
      * @param array $sortManager [field,mode]
      * @return ProductInterface 
      */
-    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager, PaginationInterface $pagination = null)
+    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null)
     {
-        $sql = "SELECT p from MQMProductBundle:Product p JOIN p.category c WHERE c.id = '".$categoryId."' ";
+        $sql = "SELECT p FROM MQMProductBundle:Product p JOIN p.category c WHERE c.id = '".$categoryId."' ";
         if ($sortManager) {
-            $sql .= $sortManager->sortQuery($sql, 'p'); 
+            $sql = $sortManager->sortQuery($sql, 'p'); 
         }
         $em = $this->getEntityManager();        
         $q = $em->createQuery($sql);
@@ -51,11 +51,11 @@ class ProductRepository extends EntityRepository
      * 
      * return array
      */
-    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager,  PaginationInterface $pagination = null)
+    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager = null,  PaginationInterface $pagination = null)
     {
-        $sql = "SELECT p from MQMProductBundle:Product p JOIN p.brand b WHERE b.id = '".$brandId."' ";
+        $sql = "SELECT p FROM MQMProductBundle:Product p JOIN p.brand b WHERE b.id = '".$brandId."' ";
         if ($sortManager) {
-            $sql .= $sortManager->sortQuery($sql, 'p'); 
+            $sql = $sortManager->sortQuery($sql, 'p'); 
         }
         $em = $this->getEntityManager();
         $q = $em->createQuery($sql);
@@ -69,7 +69,7 @@ class ProductRepository extends EntityRepository
     public function findRecentProducts($maxResults)
     {
         $em = $this->getEntityManager();
-        $q = $em->createQuery("SELECT p from MQMProductBundle:Product p ORDER BY p.createdAt ".self::RECENT_ORDER_BY);
+        $q = $em->createQuery("SELECT p FROM MQMProductBundle:Product p ORDER BY p.createdAt ".self::RECENT_ORDER_BY);
         $q->setMaxResults($maxResults);
         $products = $q->getResult();
 
@@ -109,7 +109,7 @@ class ProductRepository extends EntityRepository
      * @param type $sortManager
      * @return array 
      */
-    public function findProductsByMultiField($word, $mode, SortManagerInterface $sortManager, PaginationInterface $pagination = null)
+    public function findProductsByMultiField($word, $mode, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null)
     {
         //Name and description search
         $query = " WHERE p." . "name" . " LIKE '%" . $word . "%'";
@@ -129,7 +129,7 @@ class ProductRepository extends EntityRepository
             $query = $sortManager->sortQuery($query, 'p');     
         }
         $em = $this->getEntityManager();
-        $q = $em->createQuery("SELECT p from MQMProductBundle:Product p JOIN p.brand b" . $query);        
+        $q = $em->createQuery("SELECT p FROM MQMProductBundle:Product p JOIN p.brand b" . $query);        
         if ($pagination) {
             $q = $pagination->paginateQuery($q);
         }

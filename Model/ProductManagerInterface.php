@@ -49,12 +49,12 @@ interface ProductManagerInterface
     /**
      * @return array
      */
-    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager, PaginationInterface $pagination = null);
+    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null);
     
     /**
      * @return array
      */
-    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager, PaginationInterface $pagination = null);
+    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null);
     
     /**
      * @return array
@@ -69,5 +69,5 @@ interface ProductManagerInterface
     /**
      * @return array
      */
-    public function findProductsByMultiField($word, $searchMode, SortManagerInterface $sortManager, PaginationInterface $pagination = null);
+    public function findProductsByMultiField($word, $searchMode, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null);
 }

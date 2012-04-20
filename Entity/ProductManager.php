@@ -103,7 +103,7 @@ class ProductManager implements ProductManagerInterface
      * 
      * {@inheritDoc}
      */
-    public function findProductsByMultiField($word, $searchMode, SortManagerInterface $sortManager, PaginationInterface $pagination = null)
+    public function findProductsByMultiField($word, $searchMode, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null)
     {
         return $this->getRepository()->findProductsByMultiField($word, $searchMode, $sortManager, $pagination);
     }
@@ -112,7 +112,7 @@ class ProductManager implements ProductManagerInterface
      * 
      * {@inheritDoc}
      */
-    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager, PaginationInterface $pagination = null)
+    public function findProductsByBrandId($brandId, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null)
     {
         return $this->getRepository()->findProductsByBrandId($brandId, $sortManager, $pagination);
     }
@@ -121,7 +121,7 @@ class ProductManager implements ProductManagerInterface
      * 
      * {@inheritDoc}
      */
-    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager, PaginationInterface $pagination = null)
+    public function findProductsByCategoryId($categoryId, SortManagerInterface $sortManager = null, PaginationInterface $pagination = null)
     {
         return $this->getRepository()->findProductsByCategoryId($categoryId, $sortManager, $pagination);
     }

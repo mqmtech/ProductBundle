@@ -17,4 +17,4 @@ interface ProductFactoryInterface
     public function getProductClass();
 }
 
-?>
+
