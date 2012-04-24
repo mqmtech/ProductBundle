@@ -2,9 +2,9 @@
 
 namespace MQM\ProductBundle\Test\Product;
 
-use MQM\ProductBundle\Product\ProductInterface;
-use MQM\ProductBundle\Model\ProductManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\AppKernel;
+
+
+
 
 class ProductManagerTest extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {   
