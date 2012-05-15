@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mqm_product.form.handler.registration.class">MQM\ProductBundle\Form\Handler\RegistrationFormHandler</parameter>
+        <parameter key="mqm_product.form.type.registration.class">MQM\ProductBundle\Form\Type\RegistrationFormType</parameter>
+        <parameter key="mqm_product.form.name.registration">mqm_product_form_type_registration</parameter>
+        <parameter key="mqm_product.form.validation_groups.registration" type="collection">
+            <parameter type="string">Registration</parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+        <service id="mqm_product.form.handler.registration" class="%mqm_product.form.handler.registration.class%" scope="request" public="true">
+            <argument type="service" id="mqm_product.form.registration" />
+            <argument type="service" id="request" />
+            <argument type="service" id="mqm_product.product_manager" />
+        </service>
+
+        <service id="mqm_product.form.registration" factory-method="create" factory-service="form.factory" class="Symfony\Component\Form\Form" scope="request">
+            <argument type="service" id="mqm_product.form.type.registration" />
+            <argument />
+            <argument type="collection">
+                <argument key="validation_groups">%mqm_product.form.validation_groups.registration%</argument>
+            </argument>
+        </service>
+
+        <service id="mqm_product.form.type.registration" class="%mqm_product.form.type.registration.class%">
+            <tag name="form.type" alias="%mqm_product.form.name.registration%" />
+            <argument>%mqm_product.model.product.class%</argument>
+            <argument type="service" id="mqm_category.category_manager" />
+        </service>
+    </services>
+    
+</container>
