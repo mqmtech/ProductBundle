@@ -3,7 +3,7 @@
 namespace MQM\ProductBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\PersistentCollection;
 use MQM\CategoryBundle\Model\CategoryManagerInterface;
 use MQM\ShopBundle\Form\Type\PriceRuleType;
@@ -15,7 +15,7 @@ class RegistrationFormType extends AbstractType
     private $class;
     private $categoryManager;
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('id', 'hidden')
