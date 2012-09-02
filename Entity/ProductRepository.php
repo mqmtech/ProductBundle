@@ -2,6 +2,7 @@
 
 namespace MQM\ProductBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\EntityRepository;
 use MQM\ProductBundle\Model\ProductInterface;
 use MQM\PaginationBundle\Pagination\PaginationInterface;
